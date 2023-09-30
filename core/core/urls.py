@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('hospital_core.urls')),
+    path('profile/', include('account.urls')),
 ]
 
 
