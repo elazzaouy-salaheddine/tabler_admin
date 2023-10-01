@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_volt.apps.AdminVoltConfig',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -148,3 +149,5 @@ DEFAULT_FROM_EMAIL = 'abc@xyz.com'
 LOGIN_URL = 'profiles:login_account'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'profiles:login_account'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
