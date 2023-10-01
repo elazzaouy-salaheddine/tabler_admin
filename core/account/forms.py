@@ -10,10 +10,19 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-class UserRegistrationForm(UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True, help_text='Required. Enter a valid email address.')
+
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2']
+        fields = ('username', 'email', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Username'
+        self.fields['email'].label = 'Email'
+        self.fields['password1'].label = 'Password'
+        self.fields['password2'].label = 'Confirm Password'
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

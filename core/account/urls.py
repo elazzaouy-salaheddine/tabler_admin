@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import profile, edit_profile, register_user,UserProfileList, UserProfileCreate, UserProfileUpdate, UserProfileDelete
+from .views import profile, edit_profile, register_user
 from django.contrib.auth.views import (
     LoginView, LogoutView,
     PasswordChangeView, PasswordChangeDoneView,
@@ -27,10 +27,20 @@ urlpatterns = [
                                                                      form_class=SetPasswordForm), name='password_reset_confirm'),
     path('reset/done/', PasswordResetCompleteView.as_view(template_name='profiles/password_reset_complete.html'), name='password_reset_complete'),
 
-    # TODO path('register/', register_user, name='register'),
-    path('user_profiles/', UserProfileList.as_view(), name='user_profile_list'),
-    path('user_profiles/create/', UserProfileCreate.as_view(), name='user_profile_create'),
-    path('user_profiles/<int:pk>/update/', UserProfileUpdate.as_view(), name='user_profile_update'),
-    path('user_profiles/<int:pk>/delete/', UserProfileDelete.as_view(), name='user_profile_delete'),
+    path('register/', register_user, name='register'),
+    #path('user_profiles/', UserProfileList.as_view(), name='user_profile_list'),
+    #path('user_profiles/create/', UserProfileCreate.as_view(), name='user_profile_create'),
+    #path('user_profiles/<int:pk>/update/', UserProfileUpdate.as_view(), name='user_profile_update'),
+    #path('user_profiles/<int:pk>/delete/', UserProfileDelete.as_view(), name='user_profile_delete'),
+    # TODO Department URLs
+    path('departments/', views.DepartmentListView.as_view(), name='department-list'),
+    path('departments/<int:pk>/', views.DepartmentDetailView.as_view(), name='department-detail'),
+
+    # TODO Profile URLs
+    path('profiles/', views.ProfileListView.as_view(), name='profile-list'),
+    path('profiles/<int:pk>/', views.ProfileDetailView.as_view(), name='profile-detail'),
+    path('profiles/create/', views.ProfileCreateView.as_view(), name='profile-create'),
+    path('profiles/<int:pk>/update/', views.ProfileUpdateView.as_view(), name='profile-update'),
+    path('profiles/<int:pk>/delete/', views.ProfileDeleteView.as_view(), name='profile-delete'),
 
 ]

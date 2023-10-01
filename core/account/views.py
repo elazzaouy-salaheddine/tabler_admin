@@ -1,11 +1,22 @@
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Department
 from .forms import ProfileForm
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from .models import Department, Profile
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.urls import reverse
+from .forms import CustomUserCreationForm
+from .models import Profile
+
 @login_required
 def profile(request):
     profile = request.user.profile
@@ -27,45 +38,85 @@ def edit_profile(request):
 
 def register_user(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+        user_form = CustomUserCreationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user account
+            user = user_form.save()
+
+            # Generate a password reset token
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+
+            # Build the password reset URL
+            domain = get_current_site(request).domain
+            reset_url = reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
+            reset_url = f'http://{domain}{reset_url}'
+
+            # Send a password setup email to the user
+            subject = 'Set Your Password'
+            message = render_to_string('registration/password_setup_email.txt', {
+                'user': user,
+                'reset_url': reset_url,
+            })
+            from_email = 'your_email@example.com'  # Replace with your email address
+            recipient_list = [user.email]
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+            # Log in the user
             login(request, user)
-            return redirect('profile')  # Replace 'profile' with the URL name for the user's profile page
+
+            # Create a corresponding profile for the user
+            profile = Profile(user=user)
+            profile.save()
+
+            return redirect('profile-list')  # Redirect to a success page or profile list
     else:
-        form = UserRegistrationForm()
-    return render(request, 'profiles/register.html', {'form': form})
+        user_form = CustomUserCreationForm()
+
+    return render(request, 'profiles/register.html', {'user_form': user_form})
 
 
+class DepartmentListView(ListView):
+    model = Department
+    template_name = 'profiles/department_list.html'
+    context_object_name = 'departments'
 
 
-class UserProfileList(ListView):
+class DepartmentDetailView(DetailView):
+    model = Department
+    template_name = 'profiles/department_detail.html'
+    context_object_name = 'department'
+
+
+class ProfileListView(ListView):
     model = Profile
-    template_name = 'profiles/user_profile_list.html'
-    context_object_name = 'user_profiles'
+    template_name = 'profiles/profile_list.html'
+    context_object_name = 'profiles'
 
-class UserProfileCreate(CreateView):
+
+class ProfileDetailView(DetailView):
     model = Profile
-    template_name = 'profiles/user_profile_form.html'
-    fields = ['user','bio','location','phone_number','email', 'department']
-    success_url = reverse_lazy('profiles:user_profile_list')
+    template_name = 'profiles/profile_detail.html'
+    context_object_name = 'profile'
 
-class UserProfileUpdate(UpdateView):
+
+class ProfileCreateView(CreateView):
     model = Profile
-    template_name = 'profiles/user_profile_form.html'
-    fields = ['user','bio','location','phone_number','email', 'department']
-    success_url = reverse_lazy('profiles:user_profile_list')
+    template_name = 'profiles/profile_form.html'
+    fields = ['user', 'bio', 'location', 'phone_number', 'profile_pic', 'department']
+    success_url = reverse_lazy('profiles:profile-list')
 
-class UserProfileDelete(DeleteView):
-    # TODO DELETE PROFILE AND USER IN THE SAME TIME
+
+class ProfileUpdateView(UpdateView):
     model = Profile
-    template_name = 'profiles/user_profile_confirm_delete.html'
-    success_url = reverse_lazy('profiles:user_profile_list')
+    template_name = 'profiles/profile_form.html'
+    fields = ['user', 'bio', 'location', 'phone_number','profile_pic', 'department']
+    context_object_name = 'profile'
+    success_url = reverse_lazy('profiles:profile-list')
 
 
-
-
-
+class ProfileDeleteView(DeleteView):
+    model = Profile
+    template_name = 'profiles/profile_confirm_delete.html'
+    context_object_name = 'profile'
+    success_url = reverse_lazy('profiles:profile-list')

@@ -1,0 +1,11 @@
+ <!-- Replace "base.html" with your base template, if applicable -->
+
+{% block content %}
+  <h1>Confirm Deletion</h1>
+  <p>Are you sure you want to delete the profile for {{ profile.get_full_name }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  <a href="{% url 'profiles:profile-list' %}">Cancel</a>
+{% endblock %}

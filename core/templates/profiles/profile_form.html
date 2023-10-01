@@ -1,0 +1,11 @@
+ <!-- Replace "base.html" with your base template, if applicable -->
+
+{% block content %}
+  <h1>{% if profile.pk %}Edit Profile{% else %}Create New Profile{% endif %}</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if profile.pk %}Update Profile{% else %}Create Profile{% endif %}</button>
+  </form>
+  <a href="{% url 'profiles:profile-list' %}">Back to Profile List</a>
+{% endblock %}

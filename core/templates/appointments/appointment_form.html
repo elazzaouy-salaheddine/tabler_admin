@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% block content %}
+  <h2>{% if appointment.id %}Update Appointment{% else %}Create New Appointment{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <a href="{% url 'appointments:appointment_list' %}">Back to Appointments</a>
+{% endblock %}
