@@ -147,7 +147,7 @@ EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL = 'abc@xyz.com'
 
 LOGIN_URL = 'profiles:login_account'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'profiles:profile'
 LOGOUT_REDIRECT_URL = 'profiles:login_account'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

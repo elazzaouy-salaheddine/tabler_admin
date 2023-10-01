@@ -42,10 +42,18 @@
             </div>
           </div>
           <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-            <li class="nav-item me-2">
-              <a href="{% url 'dashboard' %}" class="nav-link">Dashboard</a>
-            </li>
+
             {% if request.user.is_authenticated %}
+            <li class="nav-item me-2">
+              {% if request.user.is_superuser %}
+              <a href="{% url 'admin:index' %}" class="nav-link">Dashboard</a>
+                
+              {% else %}
+              <a href="{% url 'profiles:profile' %}" class="nav-link">Dashboard</a>
+              {% endif %}
+              
+              
+            </li>
               <li class="nav-item me-2">
                 <a href="{% url 'logout' %}" class="nav-link">Logout</a>
               </li>
