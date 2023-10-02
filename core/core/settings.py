@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    "apps.crm",
     "hospital_core",
     "account",
     "hospital_patient",
@@ -147,7 +147,7 @@ EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL = 'abc@xyz.com'
 
 LOGIN_URL = 'profiles:login_account'
-LOGIN_REDIRECT_URL = 'profiles:profile'
+LOGIN_REDIRECT_URL = 'appointments:appointment_list' # TODO CHANGE THIS
 LOGOUT_REDIRECT_URL = 'profiles:login_account'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

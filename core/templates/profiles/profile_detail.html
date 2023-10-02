@@ -1,7 +1,20 @@
- <!-- Replace "base.html" with your base template, if applicable -->
 
 {% block content %}
+
+
+
+<h2>User Profile</h2>
+<p><strong>Username:</strong> {{ profile.user.username }}</p>
+<p><strong>Bio:</strong> {{ profile.bio }}</p>
+<img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+
+
+<a href="{% url 'profiles:profile-update' %}" class="btn btn-primary">Edit Profile</a>
+<a href="{% url 'profiles:profile-delete' profile %}" class="btn btn-primary">delete Profile</a>
+
+
   <h1>Profile Detail</h1>
+
   <table>
     <tr>
       <th>Username:</th>
@@ -32,7 +45,5 @@
       <td>{{ profile.department.name }}</td>
     </tr>
   </table>
-  <a href="{% url 'profiles:profile-list' %}">Back to Profile List</a>
-  <a href="{% url 'profiles:profile-update' profile.pk %}">Edit Profile</a>
-  <a href="{% url 'profiles:profile-delete' profile.pk %}">Delete Profile</a>
+
 {% endblock %}

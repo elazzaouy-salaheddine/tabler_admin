@@ -12,14 +12,30 @@
       <!-- Sidebar -->
       <aside class="navbar navbar-vertical navbar-expand-lg navbar-transparent">
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+      
           <h1 class="navbar-brand navbar-brand-autodark">
             <a href=".">
               <img src="{% static 'logo.svg' %}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
             </a>
           </h1>
+          <div class='row g-2 mx-2 align-items-center'>
+
+            <div class="col-4 col-sm-4 col-md-4  py-3">
+              <a href="#" class="btn btn-red w-100">
+                Log out
+              </a>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-4  py-3">
+              <a href="#" class="btn btn-cyan w-100">
+                settings
+              </a>
+            </div>
+
+          </div>
+
+
+
           <div class="navbar-nav flex-row d-lg-none">
             <div class="nav-item d-none d-lg-flex me-3">
               <div class="btn-list">

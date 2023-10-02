@@ -5,10 +5,13 @@ from django.contrib.auth.forms import PasswordResetForm as BasePasswordResetForm
 from django.contrib.auth.forms import SetPasswordForm as BaseSetPasswordForm
 from django.contrib.auth.forms import UsernameField
 from django.contrib.auth import password_validation
-from django.utils.translation import gettext, gettext_lazy as _
+from django.utils.translation import  gettext_lazy as _
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, help_text='Required. Enter a valid email address.')
@@ -26,7 +29,7 @@ class CustomUserCreationForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'location', 'profile_pic']
+        fields = ['bio', 'location','phone_number', 'profile_pic','department']
 
 
 class AuthenticationForm(BaseAuthenticationForm):
