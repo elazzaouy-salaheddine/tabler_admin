@@ -44,16 +44,18 @@
           <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
 
             {% if request.user.is_authenticated %}
+            
+            {% if request.user.is_superuser %}
             <li class="nav-item me-2">
-              {% if request.user.is_superuser %}
-              <a href="{% url 'admin:index' %}" class="nav-link">Dashboard</a>
-                
-              {% else %}
-              <a href="{% url 'appointments:appointment_list' %}" class="nav-link">Dashboard</a>
-              {% endif %}
-              
-              
+              <a href="{% url 'dashboard' %}" class="nav-link">Dashboard</a>
             </li>
+            {% else %}
+            <li class="nav-item me-2">
+              <a href="{% url 'dashboard_home' %}" class="nav-link">Dashboard</a>
+            </li>
+            {% endif %}
+              
+
               <li class="nav-item me-2">
                 <a href="{% url 'logout' %}" class="nav-link">Logout</a>
               </li>

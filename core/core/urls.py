@@ -22,10 +22,15 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('admin_volt.urls')),
-    path('', include('hospital_core.urls')),
-    path('profile/', include('account.urls')),
-    path('patient/', include('hospital_patient.urls')),
+    path('dashboard/', include('apps.dashboard.urls')),
     path('crm/', include('apps.crm.urls')),
+    path('contact/', include('apps.contact.urls')),
+    path('emails/', include('apps.emails.urls')),
+    path('hospital/', include('apps.hospital.urls')),
+    path('hr/', include('apps.hr.urls')),
+    path('school/', include('apps.school.urls')),
+    path('task/', include('apps.task.urls')),
+    path('hotel', include('apps.hotel.urls')),
 
 ]
 

@@ -40,10 +40,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "apps.dashboard",
     "apps.crm",
-    "hospital_core",
-    "account",
-    "hospital_patient",
+    "apps.contact",
+    "apps.emails",
+    "apps.hospital",
+    "apps.hr",
+    "apps.school",
+    "apps.task",
 ]
 
 MIDDLEWARE = [
@@ -138,16 +142,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Email configurations
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.xyz.com' # Set your email host
+""" EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.xyz.com' # Set your emails host
 EMAIL_PORT=587
 EMAIL_HOST_USER='abc@xyz.com'
 EMAIL_HOST_PASSWORD='******' #Your password
 EMAIL_USE_TLS=True
-DEFAULT_FROM_EMAIL = 'abc@xyz.com'
+DEFAULT_FROM_EMAIL = 'abc@xyz.com' """
 
 LOGIN_URL = 'profiles:login_account'
-LOGIN_REDIRECT_URL = 'appointments:appointment_list' # TODO CHANGE THIS
-LOGOUT_REDIRECT_URL = 'profiles:login_account'
+LOGIN_REDIRECT_URL = 'dashboard_home'
+LOGOUT_REDIRECT_URL = 'dashboard_home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
