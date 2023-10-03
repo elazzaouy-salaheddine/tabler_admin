@@ -2,4 +2,13 @@
 {% block content %}
 {% include '../navbar.html' %}
     projects list
+ <ul>
+    {% for project in projects %}
+      <li>
+        <a href="{% url 'crm:project-detail' project.pk %}">{{ project.title }}</a>
+      </li>
+    {% empty %}
+      <p>No projects available.</p>
+    {% endfor %}
+  </ul>
 {% endblock content %}

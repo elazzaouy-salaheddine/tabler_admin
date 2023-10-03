@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "ckeditor",
     'admin_volt.apps.AdminVoltConfig',
     "django.contrib.admin",
     "django.contrib.auth",
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "ckeditor",
+
     "apps.dashboard",
     "apps.crm",
     "apps.contact",
@@ -49,7 +50,7 @@ INSTALLED_APPS = [
     "apps.hr",
     "apps.school",
     "apps.task",
-    # TODO create app base chatGPT3 API dgdsg
+    # TODO create app base chatGPT3 API
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,17 @@ LOGIN_URL = 'profiles:login_account'
 LOGIN_REDIRECT_URL = 'dashboard_home'
 LOGOUT_REDIRECT_URL = 'dashboard_home'
 
-
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'  # This is the default upload path
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': '100%',
+
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+        ],
+
+    },
+}
