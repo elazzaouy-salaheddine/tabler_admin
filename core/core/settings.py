@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "ckeditor",
     "apps.dashboard",
     "apps.crm",
     "apps.contact",
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "apps.hr",
     "apps.school",
     "apps.task",
+    # TODO create app base chatGPT3 API
 ]
 
 MIDDLEWARE = [
@@ -154,4 +156,6 @@ LOGIN_URL = 'profiles:login_account'
 LOGIN_REDIRECT_URL = 'dashboard_home'
 LOGOUT_REDIRECT_URL = 'dashboard_home'
 
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

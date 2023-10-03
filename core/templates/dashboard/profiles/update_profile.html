@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+  {% include 'dashboard/profile_navbar.html' %}
+<h2>Edit Your Profile</h2>
+<form method="post">
+      <!-- Display User model fields -->
+  <h3>User Information</h3>
+  <p><strong>Username:</strong> {{ user_fields.username }}</p>
+  <p><strong>Email:</strong> {{ user_fields.email }}</p>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save Changes</button>
+</form>
+
+{% endblock content %}
