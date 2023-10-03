@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "apps.hr",
     "apps.school",
     "apps.task",
-    # TODO create app base chatGPT3 API
+    # TODO create app base chatGPT3 API dgdsg
 ]
 
 MIDDLEWARE = [
