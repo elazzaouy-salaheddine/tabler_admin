@@ -1,0 +1,162 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+{% include '../navbar.html' %}
+
+<div class="container-xl">
+    <div class="row ">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ project.title }}</h3>
+                </div>
+                <div class="card-body p-4">
+                    {{ project.description | safe }}
+                </div>
+                <div class="card-footer p-4 ">
+                    <div class="mt-3 list-inline list-inline-dots mb-0  d-sm-block d-none">
+                        <div class="list-inline-item">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event"
+                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                                <path d="M16 3l0 4"></path>
+                                <path d="M8 3l0 4"></path>
+                                <path d="M4 11l16 0"></path>
+                                <path d="M8 15h2v2h-2z"></path>
+                            </svg>
+                            {{ project.start_date }}
+                        </div>
+                        <div class="list-inline-item"><!-- Download SVG icon from http://tabler-icons.io/i/license -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event"
+                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                                <path d="M16 3l0 4"></path>
+                                <path d="M8 3l0 4"></path>
+                                <path d="M4 11l16 0"></path>
+                                <path d="M8 15h2v2h-2z"></path>
+                            </svg>
+                            {{ project.end_date }}
+                        </div>
+                        <div class="list-inline-item"><!-- Download SVG icon from http://tabler-icons.io/i/map-pin -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-edit"
+                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5"></path>
+                                <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z"></path>
+                            </svg>
+                            {{ project.user }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <div class="card my-4">
+                <div class="card-body">
+                    <div class="divide-y">
+                        {% for task in tasks %}
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="">
+                                        <h4>{{ task.title }}</h4>
+                                        <p>
+                                            Created by: {{ task.created_by.email}} {{ task.created_by.first_name }} {{ task.created_by.last_name }}
+                                        </p>
+                                        <p>
+                                            {{ task.description }}
+                                        </p>
+                                    </div>
+                                    <div class="">
+                                        <div class="badges">
+                                            Final Date : <span class="badge bg-blue"> {{ task.due_date }} </span>
+                                            Assigned To : <span class="badge bg-blue"> {{ task.assigned_to }} </span>
+                                            Completed : <span class="badge bg-red ">{% if task.completed %} Yes {% else %} No {% endif %} </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <div class="badges">
+                                    {% if user.is_authenticated and user == task.created_by %}
+                                    <a href="{% url 'crm:update-task' task.id %}" class="badge bg-azure">Edit Task</a>
+                                   <a href="{% url 'crm:delete-task' task.id %}" class="badge bg-red">Delete Task</a>
+                                    {% endif %}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row container  m-auto">
+    <div class="col-lg-8">
+        <div class="row row-cards">
+            <div class="col-12">
+                <form class="card" method="post" action="{% url 'crm:create-task' project.id %}">
+                    {% csrf_token %}
+                    <div class="card-body">
+
+                        <div class="row row-cards">
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Task Title </label>
+                                    {{ task_form.title }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Due Date</label>
+                                    {{ task_form.due_date }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">End Date</label>
+                                    {{ task_form.assigned_to }}
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="mb-3 mb-0">
+                                    <label class="form-label">Description</label>
+                                    {{ task_form.description }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3 mb-0">
+                                    <label class="form-label">completed</label>
+                                    {{ task_form.completed }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-primary">Create Task</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

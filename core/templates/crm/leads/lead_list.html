@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% include '../navbar.html' %}
+
+
+
+
+
+ <h2>List of Leads</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>created at</th>
+              <th>updated at</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for lead in leads %}
+              <tr>
+                <td> <a href="{% url 'crm:lead-detail' lead.pk %}" >{{ lead.first_name }} {{ lead.last_name }}</a> </td>
+
+                <td>{{ lead.email }}</td>
+                <td>{{ lead.phone }}</td>
+                <td>{{ lead.status }}</td>
+                <td>{{ lead.created_at }}</td>
+                <td>{{ lead.updated_at }}</td>
+                <td>
+                  <a href="{% url 'crm:lead-update' lead.pk %}" class="btn btn-warning">Edit</a>
+                  <a href="{% url 'crm:lead-delete' lead.pk %}" class="btn btn-danger">Delete</a>
+
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

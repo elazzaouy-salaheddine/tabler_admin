@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    'django_filters',
     "apps.dashboard",
     "apps.crm",
     "apps.contact",
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "apps.school",
     "apps.task",
     # TODO create app base chatGPT3 API
+    # TODO CREATE MUSIC PLAYER
 ]
 
 MIDDLEWARE = [

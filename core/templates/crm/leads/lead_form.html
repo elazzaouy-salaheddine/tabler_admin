@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% include '../navbar.html' %}
+  <h1>Edit Lead</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{% url 'crm:lead-detail' lead.pk %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

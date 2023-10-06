@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% include '../navbar.html' %}
+<h1>Confirm Deletion</h1>
+<p>Are you sure you want to delete the project "{{ project.title }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Confirm Delete</button>
+</form>
+<a href="{% url 'crm:project-list' %}">Cancel</a>
+{% endblock %}
