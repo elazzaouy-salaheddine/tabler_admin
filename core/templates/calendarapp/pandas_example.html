@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pandas Example</title>
+</head>
+<body>
+    <h1>Filtered Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in filtered_data %}
+            <tr>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.Age }}</td>
+                <td>{{ item.City }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

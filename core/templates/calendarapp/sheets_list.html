@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sheet List</title>
+</head>
+<body>
+    <h1>List of Sheets</h1>
+    <ul>
+        {% for sheet_name in sheet_names %}
+                           <a href="{% url 'sheet_data' sheet_name=sheet_name %}">{{ sheet_name }}</a>
+        {% empty %}
+            <li>No sheets found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

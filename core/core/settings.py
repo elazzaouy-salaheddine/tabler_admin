@@ -16,8 +16,9 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+BASE_FILE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# OAuth 2.0 credentials file path
+CREDENTIALS_FILE = os.path.join(BASE_DIR, 'service_account_django_tabler.json')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     "apps.hr",
     "apps.school",
     "apps.task",
+    "apps.calendarapp",
     # TODO create app base chatGPT3 API
     # TODO CREATE MUSIC PLAYER
 ]
@@ -172,3 +174,7 @@ CKEDITOR_CONFIGS = {
 
     },
 }
+
+
+# Google Sheets API Credentials
+GOOGLE_SHEETS_API_JSON = os.path.join(BASE_DIR, 'service_account_django_tabler.json')

@@ -1,0 +1,12 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% include './navbar.html' %}
+    <h1>List of Spreadsheets</h1>
+    <ul>
+        {% for spreadsheet in spreadsheets %}
+            <li>{{ spreadsheet.name }} - <a href="{% url 'spreadsheets_data' spreadsheet_id=spreadsheet.id %}">Access</a></li>
+        {% empty %}
+            <li>No spreadsheets found.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

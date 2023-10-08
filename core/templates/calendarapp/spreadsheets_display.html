@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% include './navbar.html' %}
+
+    <h1>Spreadsheets Information</h1>
+    <ul>
+        {% for spreadsheet in spreadsheets_info.spreadsheets %}
+            <li>
+                <strong>ID:</strong> {{ spreadsheet.id }}<br>
+                <strong>Name:</strong> {{ spreadsheet.name }}<br>
+                <a href="{% url 'display_spreadsheet_data' spreadsheet.id  %}">View Data</a> <!-- Link to view data in 'Sheet1' -->
+            </li>
+        {% empty %}
+            <li>No spreadsheets found.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

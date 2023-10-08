@@ -1,1 +1,7 @@
 .idea
+core/apps/google_client_secret.json
+core/apps/service_account_django_tabler.json
+core/apps/service_account_django_tabler_owner.json
+core/google_client_secret.json
+core/service_account_django_tabler.json
+core/service_account_django_tabler_owner.json

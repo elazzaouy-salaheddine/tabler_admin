@@ -31,6 +31,7 @@ urlpatterns = [
     path('school/', include('apps.school.urls')),
     path('task/', include('apps.task.urls')),
     path('hotel', include('apps.hotel.urls')),
+    path('calendar/', include('apps.calendarapp.urls')),
 
 
 ]

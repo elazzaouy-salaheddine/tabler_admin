@@ -1,0 +1,365 @@
+{% extends "base/base.html" %} 
+{% load custom_filters %} 
+{% block content %} 
+{% include './navbar.html' %} 
+    {% if spreadsheet_data.error %}
+        <p>Error: {{ spreadsheet_data.error }}</p>
+    {% else %} 
+        {% for sheet_name, sheet_data in spreadsheet_data.sheets_data.items%} 
+            {{ sheet_name }} 
+            {% for row in sheet_data|list_slice:1 %} 
+            {{ row.0 }} <br />
+
+            {% endfor %}
+        <hr />
+
+        {% endfor %} 
+    {% endif %} 
+    
+    {% if spreadsheet_data.error %}
+<p>Error: {{ spreadsheet_data.error }}</p>
+{% else %}
+<div class="container-xl">
+  {% for sheet_name, sheet_data in spreadsheet_data.sheets_data.items %}
+  <div class="card my-2">
+    <div class="card-header">
+      <h3 class="card-title">{{ sheet_name }}</h3>
+    </div>
+    {% for row in sheet_data|list_slice:1 %}
+    <div class="card-body">
+      <div class="datagrid">
+
+        <div class="datagrid-item">
+          <div class="datagrid-title">Ref :</div>
+          <div class="datagrid-content">{{ row.0 }}</div>
+        </div>
+
+        <div class="datagrid-item">
+            <div class="datagrid-title">Ref :</div>
+            <div class="datagrid-content">{{ row.1 }}</div>
+        </div>
+
+        <div class="datagrid-item">
+            <div class="datagrid-title">Ref :</div>
+            <div class="datagrid-content">{{ row.2 }}</div>
+        </div>
+
+
+        <div class="datagrid-item">
+            <div class="datagrid-title">Ref :</div>
+            <div class="datagrid-content">{{ row.3 }}</div>
+          </div>
+  
+          <div class="datagrid-item">
+              <div class="datagrid-title">Ref :</div>
+              <div class="datagrid-content">{{ row.4 }}</div>
+          </div>
+  
+          <div class="datagrid-item">
+              <div class="datagrid-title">Ref :</div>
+              <div class="datagrid-content">{{ row.5 }}</div>
+          </div>
+
+
+          <div class="datagrid-item">
+            <div class="datagrid-title">Ref :</div>
+            <div class="datagrid-content">{{ row.6 }}</div>
+          </div>
+  
+          <div class="datagrid-item">
+              <div class="datagrid-title">Ref :</div>
+              <div class="datagrid-content">{{ row.7 }}</div>
+          </div>
+  
+          <div class="datagrid-item">
+              <div class="datagrid-title">Ref :</div>
+              <div class="datagrid-content">{{ row.8 }}</div>
+          </div>
+  
+  
+          <div class="datagrid-item">
+              <div class="datagrid-title">Ref :</div>
+              <div class="datagrid-content">{{ row.9 }}</div>
+            </div>
+    
+            <div class="datagrid-item">
+                <div class="datagrid-title">Ref :</div>
+                <div class="datagrid-content">{{ row.10 }}</div>
+            </div>
+    
+            <div class="datagrid-item">
+                <div class="datagrid-title">Ref :</div>
+                <div class="datagrid-content">{{ row.11 }}</div>
+            </div>
+  
+
+            <div class="datagrid-item">
+                <div class="datagrid-title">Ref :</div>
+                <div class="datagrid-content">{{ row.12 }}</div>
+              </div>
+      
+              <div class="datagrid-item">
+                  <div class="datagrid-title">Ref :</div>
+                  <div class="datagrid-content">{{ row.13 }}</div>
+              </div>
+      
+              <div class="datagrid-item">
+                  <div class="datagrid-title">Ref :</div>
+                  <div class="datagrid-content">{{ row.14 }}</div>
+              </div>
+      
+      
+              <div class="datagrid-item">
+                  <div class="datagrid-title">Ref :</div>
+                  <div class="datagrid-content">{{ row.15 }}</div>
+                </div>
+        
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Ref :</div>
+                    <div class="datagrid-content">{{ row.16 }}</div>
+                </div>
+        
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Ref :</div>
+                    <div class="datagrid-content">{{ row.17 }}</div>
+                </div>
+      
+      
+                <div class="datagrid-item">
+                  <div class="datagrid-title">Ref :</div>
+                  <div class="datagrid-content">{{ row.18 }}</div>
+                </div>
+        
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Ref :</div>
+                    <div class="datagrid-content">{{ row.19 }}</div>
+                </div>
+        
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Ref :</div>
+                    <div class="datagrid-content">{{ row.20 }}</div>
+                </div>
+        
+        
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Ref :</div>
+                    <div class="datagrid-content">{{ row.21 }}</div>
+                  </div>
+          
+                  <div class="datagrid-item">
+                      <div class="datagrid-title">Ref :</div>
+                      <div class="datagrid-content">{{ row.22 }}</div>
+                  </div>
+          
+                  <div class="datagrid-item">
+                      <div class="datagrid-title">Ref :</div>
+                      <div class="datagrid-content">{{ row.23 }}</div>
+                  </div>
+
+                  <div class="datagrid-item">
+                    <div class="datagrid-title">Ref :</div>
+                    <div class="datagrid-content">{{ row.24 }}</div>
+                  </div>
+          
+                  <div class="datagrid-item">
+                      <div class="datagrid-title">Ref :</div>
+                      <div class="datagrid-content">{{ row.25 }}</div>
+                  </div>
+          
+                  <div class="datagrid-item">
+                      <div class="datagrid-title">Ref :</div>
+                      <div class="datagrid-content">{{ row.26 }}</div>
+                  </div>
+          
+          
+                  <div class="datagrid-item">
+                      <div class="datagrid-title">Ref :</div>
+                      <div class="datagrid-content">{{ row.27 }}</div>
+                    </div>
+            
+                    <div class="datagrid-item">
+                        <div class="datagrid-title">Ref :</div>
+                        <div class="datagrid-content">{{ row.28 }}</div>
+                    </div>
+            
+                    <div class="datagrid-item">
+                        <div class="datagrid-title">Ref :</div>
+                        <div class="datagrid-content">{{ row.29 }}</div>
+                    </div>
+
+                    <div class="datagrid-item">
+                        <div class="datagrid-title">Ref :</div>
+                        <div class="datagrid-content">{{ row.30 }}</div>
+                      </div>
+              
+                      <div class="datagrid-item">
+                          <div class="datagrid-title">Ref :</div>
+                          <div class="datagrid-content">{{ row.31 }}</div>
+                      </div>
+              
+                      <div class="datagrid-item">
+                          <div class="datagrid-title">Ref :</div>
+                          <div class="datagrid-content">{{ row.32 }}</div>
+                      </div>
+    
+                      <div class="datagrid-item">
+                        <div class="datagrid-title">Ref :</div>
+                        <div class="datagrid-content">{{ row.33 }}</div>
+                      </div>
+              
+                      <div class="datagrid-item">
+                          <div class="datagrid-title">Ref :</div>
+                          <div class="datagrid-content">{{ row.34 }}</div>
+                      </div>
+              
+                      <div class="datagrid-item">
+                          <div class="datagrid-title">Ref :</div>
+                          <div class="datagrid-content">{{ row.35 }}</div>
+                      </div>
+              
+              
+                      <div class="datagrid-item">
+                          <div class="datagrid-title">Ref :</div>
+                          <div class="datagrid-content">{{ row.36 }}</div>
+                        </div>
+                
+                        <div class="datagrid-item">
+                            <div class="datagrid-title">Ref :</div>
+                            <div class="datagrid-content">{{ row.37 }}</div>
+                        </div>
+                
+                        <div class="datagrid-item">
+                            <div class="datagrid-title">Ref :</div>
+                            <div class="datagrid-content">{{ row.38}}</div>
+                        </div>
+        
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<h1>Spreadsheet Data from local json</h1>
+{% if spreadsheet_data.error %}
+<p>Error: {{ spreadsheet_data.error }}</p>
+{% else %} {% for sheet_name, sheet_data in spreadsheet_data.sheets_data.items%}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">{{ sheet_name }}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page body -->
+<div class="page-body">
+  <div class="container-xl">
+    <div class="card">
+      <div class="card-body">
+        <div id="table-default" class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Value1</th>
+                <th>Value2</th>
+                <th>Value3</th>
+                <th>Total tax</th>
+                <th>Order date</th>
+                <th>Total with customer currency</th>
+                <th>Address currency</th>
+                <th>Order customer currency</th>
+                <th>Address zip code</th>
+                <th>Variant price</th>
+                <th>Product variant</th>
+                <th>Product URL</th>
+                <th>Full Address</th>
+                <th>Address 1</th>
+                <th>First name</th>
+                <th>Address 2</th>
+                <th>Total charge</th>
+                <th>Total coupon</th>
+                <th>Total quantity</th>
+                <th>Payment status</th>
+                <th>Total shipping fees</th>
+                <th>Total discount</th>
+                <th>City</th>
+                <th>Payment Gateway</th>
+                <th>Shipping status</th>
+                <th>Tracking number</th>
+                <th>Product name</th>
+                <th>Address country</th>
+                <th>Address state</th>
+                <th>Address city</th>
+                <th>Last name</th>
+                <th>Region</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Full name as table header</th>
+              </tr>
+            </thead>
+            <tbody class="table-tbody">
+              {% for row in sheet_data %}
+              <tr>
+                <th class="sort-name">{{ row.0 }}</th>
+                <td class="sort-city">{{ row.1 }}</td>
+                <td class="sort-type">{{ row.2 }}</td>
+                <td class="sort-score">{{ row.3 }}</td>
+                <td class="sort-date">{{ row.4 }}</td>
+                <td class="sort-quantity">{{ row.5 }}</td>
+                <td class="sort-quantity">{{ row.6 }}</td>
+                <th class="sort-name">{{ row.7 }}</th>
+                <td class="sort-city">{{ row.8 }}</td>
+                <td class="sort-type">{{ row.9 }}</td>
+                <td class="sort-score">{{ row.10 }}</td>
+                <td class="sort-date">{{ row.11 }}</td>
+                <td class="sort-quantity">{{ row.12 }}</td>
+                <td class="sort-quantity">{{ row.13 }}</td>
+                <td class="sort-quantity">{{ row.14 }}</td>
+                <td class="sort-quantity">{{ row.15 }}</td>
+                <th class="sort-name">{{ row.16 }}</th>
+                <td class="sort-city">{{ row.17 }}</td>
+                <td class="sort-type">{{ row.18 }}</td>
+                <td class="sort-score">{{ row.19 }}</td>
+                <td class="sort-date">{{ row.20 }}</td>
+                <td class="sort-quantity">{{ row.21 }}</td>
+                <td class="sort-quantity">{{ row.22 }}</td>
+                <td class="sort-quantity">{{ row.23 }}</td>
+                <td class="sort-quantity">{{ row.24 }}</td>
+                <td class="sort-quantity">{{ row.25 }}</td>
+                <th class="sort-name">{{ row.26 }}</th>
+                <td class="sort-city">{{ row.27 }}</td>
+                <td class="sort-type">{{ row.28 }}</td>
+                <td class="sort-score">{{ row.29 }}</td>
+                <td class="sort-date">{{ row.30 }}</td>
+                <td class="sort-quantity">{{ row.31 }}</td>
+                <td class="sort-quantity">{{ row.32 }}</td>
+                <td class="sort-city">{{ row.33 }}</td>
+                <td class="sort-type">{{ row.34 }}</td>
+                <td class="sort-score">{{ row.35 }}</td>
+                <td class="sort-date">{{ row.36 }}</td>
+                <td class="sort-quantity">{{ row.37 }}</td>
+                <td class="sort-quantity">{{ row.38 }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page body -->
+{% endfor %} {% endif %} {% if spreadsheet_data.error %}
+<p>Error: {{ spreadsheet_data.error }}</p>
+{% else %} {% for sheet_name, sheet_data in spreadsheet_data.sheets_data.items%} 
+{{ sheet_name }} {% for row in sheet_data|list_slice:1 %} {{ row.0 }} <br />
+
+{% endfor %}
+<hr />
+
+{% endfor %} {% endif %} {% endblock %}
